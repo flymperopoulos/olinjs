@@ -1,0 +1,50 @@
+<h2>In Stock Ingredients</h2>
+
+<div id="inStockIngredients">
+  <ul>
+    {{each inStock}}
+    <form id = "inStockStuff" action="ChangeInStock" method = "POST">
+      <li>
+        {{this.itemName}} <br>
+        {{this.cost}}
+      </li>
+      <input type="button" class="edit" value="Edit">
+      <input type="submit" class="submit" value="Out of Stock">
+    </form>
+    {{/each}}
+  </ul>
+</div>
+
+
+<h2>Out of Stock Ingredients</h2>
+
+<div id="outStockIngredients">
+  <ul>
+    {{each outOfStock}}
+    <form id = "outStockStuff" action="ChangeOutStock" method = "POST">
+      <li>
+        {{this.itemName}} <br>
+        {{this.cost}}
+      </li>
+      <input type="button" value="Edit">
+      <input type="submit" value="Back in Stock">
+    </form>
+    {{/each}}
+  </ul>
+</div>
+
+<h2>New Ingredient</h2>
+
+<form id="ajax-form-ingredients" action="getIngredient" method="POST">
+
+  Name:
+  <input type="text" name="name" id="nameField"/><br/>
+  Price:
+  <input type="text" name="price" id="costField"/><br/>
+
+  <input type="submit" value="Add">
+
+</form>
+
+
+<div id="result"></div>
