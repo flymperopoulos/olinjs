@@ -1,50 +1,78 @@
-<h2>In Stock Ingredients</h2>
+<div id="aboutus-section" class ="services bg-primary" style="background-color:#aa7243">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-lg-10 col-lg-offset-1">
+        <div class="row">
+          <div class="col-lg-12">
+            <h2 style="font-family: 'Myriad Set Pro', 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;">New Ingredient</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<center>
+  <form id="ajax-form-ingredients" action="getIngredient" method="POST">
+
+    <input type="text" name="name" id="nameField" placeholder="Enter Ingredient"/><br>
+    <input type="text" name="price" id="costField" placeholder="Enter Cost"/><br><br>
+    <input type="submit" value="Add" >
+
+  </form>
+</center>
+<br>
+
+<div id="aboutus-section" class ="services bg-primary" style="background-color:#ff6666">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-lg-10 col-lg-offset-1">
+
+        <div class="row">
+          <div class="col-lg-12">
+            <h2 style="font-family: 'Myriad Set Pro', 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;">In-Stock Ingredients</h2>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<br>
 
 <div id="inStockIngredients">
-  <ul>
-    {{each inStock}}
-    <form id = "inStockStuff" action="ChangeInStock" method = "POST">
-      <li>
-        {{this.itemName}} <br>
-        {{this.cost}}
-      </li>
-      <input type="button" class="edit" value="Edit">
-      <input type="submit" class="submit" value="Out of Stock">
-    </form>
-    {{/each}}
-  </ul>
+  {{#each inStock}}
+      {{> newingredientform}}
+  {{/each}}
 </div>
 
+<br>
 
-<h2>Out of Stock Ingredients</h2>
+<div id="aboutus-section" class ="services bg-primary" style="background-color:#006600">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-lg-10 col-lg-offset-1">
+        <div class="row">
+          <div class="col-lg-12">
+            <h2 style="font-family: 'Myriad Set Pro', 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;">Out-of-Stock Ingredients</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
 
 <div id="outStockIngredients">
-  <ul>
-    {{each outOfStock}}
-    <form id = "outStockStuff" action="ChangeOutStock" method = "POST">
-      <li>
-        {{this.itemName}} <br>
-        {{this.cost}}
-      </li>
-      <input type="button" value="Edit">
-      <input type="submit" value="Back in Stock">
-    </form>
-    {{/each}}
-  </ul>
+  {{#each outOfStock}}
+    {{> newingredientform}}
+  {{/each}}
 </div>
 
-<h2>New Ingredient</h2>
-
-<form id="ajax-form-ingredients" action="getIngredient" method="POST">
-
-  Name:
-  <input type="text" name="name" id="nameField"/><br/>
-  Price:
-  <input type="text" name="price" id="costField"/><br/>
-
-  <input type="submit" value="Add">
-
-</form>
-
-
-<div id="result"></div>
+<center>
+<br>
+  <a href="/">
+    <img src="https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/512/home.png" width="100" height="100">
+  </a>
+  <br><br>
+</center>

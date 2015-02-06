@@ -1,0 +1,50 @@
+<div id="aboutus-section" class ="services bg-primary" style="background-color:#ff6666">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-lg-10 col-lg-offset-1">
+
+        <div class="row">
+          <div class="col-lg-12">
+            <h2 style="font-family: 'Myriad Set Pro', 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;">Order Your Own Ingredients</h2>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<center>
+{{#each ingredients}}
+  	<div id = '{{this._id}}'>
+
+
+	  	<div class="info-ingr">
+		  	<div class="name-of-ingr"><b><font size="9">{{this.itemName}}</font></b></div>
+			<div class="cost-of-ingr">{{this.cost}}</div>
+		</div>
+
+		<label>
+			{{#if this.inStock}}
+				<input class="order-checkbox" type="checkbox" enabled>
+			{{else}}
+				<input class="order-checkbox" type="checkbox" disabled>
+			{{/if}}
+
+		</label>
+
+	</div>
+	<br>
+{{/each}}
+
+	<br><br>
+
+	<input type="button" value="Submit" id="btn-order">
+	<div class="final-res">
+		Total: <div class="total-cost"></div>
+	</div>
+
+
+<div id="result" style="color:green"></div>
+</center>
