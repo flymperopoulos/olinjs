@@ -1,3 +1,4 @@
+<!-- Bootstrap simple bootstrap trend -->
 <div id="aboutus-section" class ="services bg-primary" style="background-color:#aa7243">
   <div class="container">
     <div class="row text-center">
@@ -16,10 +17,12 @@
 <center>
 	<div id="main-content">
 	    <div id='orders-list'>
+	    	<!-- Iterates through orders -->
 	    {{#each orders}}
 	        <li id='{{this._id}}'>
 	            <label>
 	            {{#each this.ingredients}}
+	            <!-- if not last item proceed -->
 	                {{#unless @last}}
 	                {{this.name}},
 	                {{else}}
