@@ -134,6 +134,7 @@ $('#btn-order').click(function(){
 $('.btn-order-completed').click(function (){
   // Remove the order we completed in the kitchen
   orderID = $(this).parent().parent().attr('id');
+  console.log(orderID);
   $('#'+orderID).remove();
 
   $.post('/kitchenOrders', {'idToDelete': orderID}, function (){})

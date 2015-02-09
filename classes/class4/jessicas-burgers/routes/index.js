@@ -162,7 +162,11 @@ routes.getKitchen = function(req, res){
 }
 
 routes.submitKitchen = function(req, res){
-	res.end();
+
+	Order.find({'_id':req.body.idToDelete})
+		 .remove(function(err) {
+			if (err) console.log('error on deleting order');
+		});
 }
 	
 module.exports = routes;
