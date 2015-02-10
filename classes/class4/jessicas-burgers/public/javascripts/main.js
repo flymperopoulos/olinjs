@@ -38,7 +38,7 @@ $newForm.submit(function(event) {
 
 
 $editForm.submit(function (event){
-  // gets id and edits form
+  // moves in-stock to out-stock
   console.log('deleted ingredient from in-stock');
   event.preventDefault();
   var postData = {id:$(this).attr("id")};
@@ -49,7 +49,7 @@ $editForm.submit(function (event){
 });
 
 $outForm.submit(function (event){
-  // form that altes the out of stock cases
+  // form that alters the out of stock cases
   console.log('adding ingredient from in-stock');
   event.preventDefault();
   var postData = {id:$(this).attr("id")};
