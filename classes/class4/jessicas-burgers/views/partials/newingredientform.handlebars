@@ -1,0 +1,22 @@
+<center>
+{{#if data.inStock}}
+	<form id='{{this.data._id}}' class="edit_form">
+
+	    <span><b>{{data.itemName}}</b> - ${{data.cost}}</span>
+	    <input type="text" name="name" id="editItemName" placeholder="Edit the Name"/>
+	    <input type="text" name="name" id="editPrice" placeholder="Edit the price"/>
+	    <button class="edit-button">Edit</button>
+	    <input type="submit" class="submit" value="Out of Stock">
+
+	</form>
+{{else}}
+
+	<form id='{{this.data._id}}' class="out_form">
+	    <span><b>{{data.itemName}}</b> - ${{data.cost}}</span>
+	    <input type="submit" value="Back in Stock">
+	</form>
+
+{{/if}}
+
+
+</center>
