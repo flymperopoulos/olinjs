@@ -84,7 +84,7 @@ $(".edit-button").click(function (event){
   var cost = $(this).parent().find("#editPrice").val();
   var formID = $(this).parent().attr('id');
 
-  var postData = {
+  postData = {
     id : formID,
     itemName : name,
     cost : cost
@@ -92,7 +92,11 @@ $(".edit-button").click(function (event){
 
   $(this).siblings('span').html(postData.itemName + " - $" + postData.cost);
 
-})
+  $.post('/editIngredient', postData) 
+    .done()
+    .error(onError);
+});
+
 
 $(".order-checkbox").change(function (event){
 // takes care of case where button is checked

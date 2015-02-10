@@ -82,7 +82,7 @@ routes.editIngredient = function (req, res){
 	console.log(updatedName);
 
 	// updates old, with new name and cost of ingredient
-	Ingredient.update({'_id':objectID},{$set: {itemName : updatedName, cost : updatedCost}}, {upsert: true}, function (err){
+	Ingredient.update({_id:objectID},{$set: {itemName : updatedName, cost : updatedCost}}, {upsert: true}, function (err){
 		if (err){
 			console.log('An error occured and name and price could not be updated.');
 		} else {
