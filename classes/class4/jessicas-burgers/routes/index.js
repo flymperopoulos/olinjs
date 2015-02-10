@@ -3,6 +3,12 @@ var path = require('path');
 var Ingredient = require(path.join(__dirname,'../models/ingredientModel'));
 var Order = require(path.join(__dirname,'../models/orderModel'));
 
+// ErrorHandler method
+function errorHandler(err, req, res, next) {
+  res.status(500);
+  res.render('error', { error: err });
+}
+
 // Initializes routes new object
 var routes = {};
 
@@ -15,9 +21,7 @@ routes.arrangeIngredient = function (req,res){
 	// query for all ingredients, seperate by state of in-Stock and out-Stock and render
 	Ingredient.find({},function(err,ingredientList){
 
-		if (err){
-			console.log('error took place');
-		}
+		if (err) errorHandler(err,req,res);
 
 		// Initiates empty arrays for in and out of Stock items
 		var inStockIng = [];
@@ -83,9 +87,10 @@ routes.editIngredient = function (req, res){
 
 	// updates old, with new name and cost of ingredient
 	Ingredient.update({_id:objectID},{$set: {itemName : updatedName, cost : updatedCost}}, {upsert: true}, function (err){
-		if (err){
-			console.log('An error occured and name and price could not be updated.');
-		} else {
+		if (err) {
+			errorHandler(err,req,res);
+		}
+		else {
 			res.send();
 		}
 	})
@@ -99,7 +104,7 @@ routes.moveIngredient = function (req, res){
 	Ingredient.update({'_id':id}, {$set: {inStock:false}}, function (err, data){
 		Ingredient.findOne({'_id':id},function	(err, data){
 			if (err){
-				res.send('There was an error.');
+				errorHandler(err,req,res);
 			} else {
 				res.send(data);
 			}
@@ -114,7 +119,7 @@ routes.moveBackInIngredient = function (req, res){
 	Ingredient.update({'_id':id}, {$set: {inStock:true}}, function (err, data){
 		Ingredient.findOne({'_id':id},function	(err, data){
 			if (err){
-				res.send('There was an error.');
+				errorHandler(err,req,res);
 			} else {
 				res.send(data);
 			}
@@ -125,8 +130,8 @@ routes.moveBackInIngredient = function (req, res){
 routes.getOrder = function(req, res){
 	// Create orders based on ingredient lists
 	Ingredient.find({}, function(err, ingredientList) {
-		if (err) {
-			console.error("Is not able to find ingredients", err);
+		if (err){
+			errorHandler(err,req,res);
 		};
 		res.render('order', {'ingredients': ingredientList});
 	});
@@ -142,7 +147,7 @@ routes.submitOrder = function (req, res){
 
 	OrderX.save(function (err){
 		if (err){
-			console.log('Error taking place',err);
+			errorHandler(err,req,res);
 		} else {
 			res.end();
 		}
@@ -154,7 +159,9 @@ routes.getKitchen = function(req, res){
 	Order.find({})
 		 .populate('ingredients')
 		 .exec(function(err, orders) {
-	    if (err) console.log(err);
+	 	if (err){
+	 		errorHandler(err,req,res);
+	 	}
 	    else {
 	        res.render('kitchen', {'orders':orders});
     }
@@ -165,7 +172,9 @@ routes.submitKitchen = function(req, res){
 
 	Order.find({'_id':req.body.idToDelete})
 		 .remove(function(err) {
-			if (err) console.log('error on deleting order');
+			if (err){
+				errorHandler(err,req,res);
+			}
 		});
 }
 	
